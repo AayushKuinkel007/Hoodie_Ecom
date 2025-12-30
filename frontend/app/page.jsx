@@ -1,11 +1,14 @@
 import React from "react";
+import Navbar from "./components/Navbar";
 
 const page = () => {
   return (
     <>
-      <div className="text-center">
-        <h1 className="text-2xl">Hello World</h1>
-      </div>
+      <section className="bg-gray-200 h-screen relative">
+        <div className="bg-white w-full md:w-100 fixed top-5 left-5">
+          <Navbar />
+        </div>
+      </section>
     </>
   );
 };
