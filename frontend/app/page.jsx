@@ -5,7 +5,7 @@ const page = () => {
   return (
     <>
       <section className="bg-gray-200 h-screen relative">
-        <div className="bg-white w-full md:w-100 fixed top-5 left-5">
+        <div className="bg-white w-[95%] md:w-100 fixed m-3 md:m-0 md:top-5 md:left-5">
           <Navbar />
         </div>
       </section>
