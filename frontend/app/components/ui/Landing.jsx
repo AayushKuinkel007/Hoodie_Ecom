@@ -20,7 +20,7 @@ const Landing = () => {
         </div>
       </div>
 
-      <div className="absolute left-5 top-40">
+      <div className="hidden md:block absolute left-5 top-40">
         <h2 className="text-[10px] font-semibold flex items-center gap-2 ms-3">
           Collections <span className="text-gray-400 font-normal">01 / 01</span>
         </h2>
