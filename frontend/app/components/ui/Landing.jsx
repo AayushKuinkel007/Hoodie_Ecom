@@ -5,7 +5,7 @@ const Landing = () => {
   return (
     <>
       {/* Collections Bar */}
-      <div className="bg-white w-[250px] md:mt-3 ms-2.5 md:absolute md:top-2 md:right-5 z-10">
+      <div className="bg-white w-[250px] md:mt-3 ms-2.5 md:absolute md:top-2 md:right-5 z-10 hidden md:block">
         <div className="flex justify-between items-center">
           {/* Left */}
           <h2 className="text-[10px] font-semibold flex items-center gap-2 ms-3">
