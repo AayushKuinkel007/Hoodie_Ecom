@@ -8,7 +8,7 @@ const page = () => {
       <section className="bg-gray-200/50 min-h-screen relative flex flex-col md:block">
         <header>
           {/* Navbar */}
-          <div className="bg-white w-[95%] md:w-100 mx-auto mt-3 md:fixed md:top-2 md:left-5 z-20">
+          <div className="bg-white w-[95%] md:w-92 mx-auto mt-3 md:fixed md:top-2 md:left-5 z-20">
             <Navbar />
           </div>
 
@@ -22,7 +22,7 @@ const page = () => {
               </h2>
 
               {/* Right box */}
-              <div className="w-8 h-8 border border-black flex items-center justify-center">
+              <div className="w-7 h-7 border border-black flex items-center justify-center">
                 <span className="text-xs font-bold">M</span>
               </div>
             </div>
@@ -32,7 +32,7 @@ const page = () => {
         {/* Page Start */}
         <main>
           {/* Landing Section */}
-          <section className="absolute top-40 p-10">
+          <section className="absolute top-35 ms-3 p-2">
             <Landing />
           </section>
         </main>
