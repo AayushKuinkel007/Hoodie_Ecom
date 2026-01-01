@@ -30,7 +30,7 @@ const Landing = () => {
         </h2>
       </div>
 
-      <div className="absolute bottom-5 left-5 w-100">
+      <div className="absolute bottom-5 left-5 w-92">
         <div className="flex justify-between bg-white p-1">
           <h1 className="text-[12px]">10 Products</h1>
           <span className="text-gray-400 text-[12px]">Discover</span>
