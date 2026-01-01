@@ -2,6 +2,7 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import Landing from "./components/ui/Landing";
+import Footer from "./components/Footer";
 
 const Page = () => {
   return (
@@ -36,7 +37,6 @@ const Page = () => {
               <span className="text-xs font-bold">M</span>
             </div>
           </div>
-
         </header>
 
         {/* Main Content */}
@@ -48,7 +48,7 @@ const Page = () => {
       </section>
 
       <section>
-        <h1>Hello World</h1>
+        <Footer />
       </section>
     </>
   );
