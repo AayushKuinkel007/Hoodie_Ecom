@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <>
       <div className="relative bg-gray-300/20">
-        <div className="flex justify-center py-10 px-50 h-[91.2vh] ">
+        <div className="flex justify-center py-10 px-50 h-[90.8vh] ">
           <p className="text-center font-bold text-5xl w-200 uppercase px-30">
             Born on the road, made for the city. Technical, protective and
             unapologetically feminine, our pieces give women the confidence to
