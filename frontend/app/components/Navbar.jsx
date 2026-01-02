@@ -12,47 +12,56 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="p-2">
-      <h1 className="text-sm font-bold">UjjyaloHoodie</h1>
+    <>
+      <div className="bg-white w-[95%] md:w-92 mx-auto mt-3 md:fixed md:top-2 md:left-5 z-20 shadow-sm">
+        <div className="p-2">
+          <h1 className="text-sm font-bold">UjjyaloHoodie</h1>
 
-      <div className="flex justify-between items-center mt-3">
-        {/* LEFT: All + Stores */}
-        <div className="flex gap-6">
-          {Navlinks.slice(0, 2).map((item) => (
+          <div className="flex justify-between items-center mt-3">
+            {/* LEFT: All + Stores */}
+            <div className="flex gap-6">
+              {Navlinks.slice(0, 2).map((item) => (
+                <div
+                  key={item.id} // <-- add this
+                  className={`transition-opacity duration-200 ${
+                    hoveredId && hoveredId !== item.id
+                      ? "opacity-40"
+                      : "opacity-100"
+                  }`}
+                  onMouseEnter={() => setHoveredId(item.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                >
+                  <TextScramble className="group flex items-center gap-1 font-mono text-[10px] uppercase cursor-pointer">
+                    <span>{item.link}</span>
+                    <span className="text-gray-400 group-hover:text-black">
+                      {item.value}
+                    </span>
+                  </TextScramble>
+                </div>
+              ))}
+            </div>
+
+            {/* RIGHT: Cart */}
             <div
               className={`transition-opacity duration-200 ${
-                hoveredId && hoveredId !== item.id
+                hoveredId && hoveredId !== Navlinks[2].id
                   ? "opacity-40"
                   : "opacity-100"
               }`}
-              onMouseEnter={() => setHoveredId(item.id)}
+              onMouseEnter={() => setHoveredId(Navlinks[2].id)}
               onMouseLeave={() => setHoveredId(null)}
             >
               <TextScramble className="group flex items-center gap-1 font-mono text-[10px] uppercase cursor-pointer">
-                <span>{item.link}</span>
-                <span className="text-gray-400 group-hover:text-black">{item.value}</span>
+                <span>{Navlinks[2].link}</span>
+                <span className="text-gray-400 group-hover:text-black">
+                  {Navlinks[2].value}
+                </span>
               </TextScramble>
             </div>
-          ))}
-        </div>
-
-        {/* RIGHT: Cart */}
-        <div
-          className={`transition-opacity duration-200 ${
-            hoveredId && hoveredId !== Navlinks[2].id
-              ? "opacity-40"
-              : "opacity-100"
-          }`}
-          onMouseEnter={() => setHoveredId(Navlinks[2].id)}
-          onMouseLeave={() => setHoveredId(null)}
-        >
-          <TextScramble className="group flex items-center gap-1 font-mono text-[10px] uppercase cursor-pointer">
-            <span>{Navlinks[2].link}</span>
-            <span className="text-gray-400 group-hover:text-black">{Navlinks[2].value}</span>
-          </TextScramble>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

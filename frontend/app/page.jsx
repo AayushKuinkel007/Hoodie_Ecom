@@ -10,9 +10,7 @@ const Page = () => {
       <section className="relative">
         {/* Navbar */}
         <header>
-          <div className="bg-white w-[95%] md:w-92 mx-auto mt-3 md:fixed md:top-2 md:left-5 z-20 shadow-sm">
-            <Navbar />
-          </div>
+          <Navbar key=""/>
 
           {/* mobile only */}
           <div className="absolute bottom-5 md:hidden">
@@ -41,7 +39,7 @@ const Page = () => {
 
         {/* Main Content */}
         <main>
-            <Landing />
+          <Landing />
         </main>
       </section>
 
