@@ -1,28 +1,29 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link"; // for navigation
 import { TextScramble } from "./TextScramble";
 
 const Navbar = () => {
   const [hoveredId, setHoveredId] = useState(null);
 
   const Navlinks = [
-    { id: 1, link: "All", value: "20" },
-    { id: 2, link: "Stores", value: "4" },
-    { id: 3, link: "Cart", value: "00" },
+    { id: 1, link: "All", value: "20", path: "" },
+    { id: 2, link: "Stories", value: "4", path: "/storiess" },
+    { id: 3, link: "Cart", value: "00", path: "" },
   ];
 
   return (
-    <>
-      <div className="bg-white w-[95%] md:w-92 mx-auto mt-3 md:fixed md:top-2 md:left-5 z-20 shadow-sm">
-        <div className="p-2">
-          <h1 className="text-sm font-bold">UjjyaloHoodie</h1>
+    <div className="bg-white w-[95%] md:w-92 mx-auto mt-3 md:fixed md:top-2 md:left-5 z-20 shadow-sm rounded-sm">
+      <div className="px-2 py-1">
 
-          <div className="flex justify-between items-center mt-3">
-            {/* LEFT: All + Stores */}
-            <div className="flex gap-6">
-              {Navlinks.slice(0, 2).map((item) => (
+        <Link href="/" className="text-sm font-bold">UjjyaloHoodie</Link>
+
+        <div className="flex justify-between items-center mt-3">
+          {/* LEFT: All + Stories */}
+          <div className="flex gap-6">
+            {Navlinks.slice(0, 2).map((item) => (
+              <Link key={item.id} href={item.path}>
                 <div
-                  key={item.id} // <-- add this
                   className={`transition-opacity duration-200 ${
                     hoveredId && hoveredId !== item.id
                       ? "opacity-40"
@@ -38,10 +39,12 @@ const Navbar = () => {
                     </span>
                   </TextScramble>
                 </div>
-              ))}
-            </div>
+              </Link>
+            ))}
+          </div>
 
-            {/* RIGHT: Cart */}
+          {/* RIGHT: Cart */}
+          <Link href={Navlinks[2].path}>
             <div
               className={`transition-opacity duration-200 ${
                 hoveredId && hoveredId !== Navlinks[2].id
@@ -58,10 +61,10 @@ const Navbar = () => {
                 </span>
               </TextScramble>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

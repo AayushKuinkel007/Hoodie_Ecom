@@ -31,14 +31,14 @@ const Landing = () => {
       }}
     >
       {/* Collections Bar */}
-      <div className="bg-white w-[250px] md:mt-3 ms-2.5 md:absolute md:top-2 md:right-5 z-10 hidden md:block">
+      <div className="bg-white w-[250px] md:mt-3 ms-2.5 md:absolute md:top-2 md:right-5 z-10 hidden md:block rounded-sm">
         <div className="flex justify-between items-center">
           <p className="text-[10px] font-semibold flex items-center gap-2 ms-3">
             Collections
             <span className="text-gray-400 font-normal">01 / 01</span>
           </p>
 
-          <div className="w-7 h-7 border border-black flex items-center justify-center">
+          <div className="w-7 h-7 border border-black flex items-center justify-center rounded-sm">
             <span className="text-xs font-bold">M</span>
           </div>
         </div>
