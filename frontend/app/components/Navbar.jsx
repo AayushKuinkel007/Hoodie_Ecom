@@ -7,7 +7,7 @@ const Navbar = () => {
   const [hoveredId, setHoveredId] = useState(null);
 
   const Navlinks = [
-    { id: 1, link: "All", value: "20", path: "" },
+    { id: 1, link: "All", value: "20", path: "/products" },
     { id: 2, link: "Stories", value: "4", path: "/storiess" },
     { id: 3, link: "Cart", value: "00", path: "" },
   ];

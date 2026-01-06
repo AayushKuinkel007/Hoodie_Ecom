@@ -4,7 +4,7 @@ import { useRef } from "react";
 
 const CHARS = "QWERTYUIOP";
 
-export function TextScramble({ children, className = "", speed = 15 }) {
+export function TextScramble({ children, className = "", speed = 10 }) {
   const ref = useRef(null);
   const intervalRef = useRef(null);
   const isAnimating = useRef(false);
