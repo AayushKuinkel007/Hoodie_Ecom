@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Navbar from "../components/Navbar";
 import zoro from "../Assets/hoodie_images/zoro.png";
 import inosuke from "../Assets/hoodie_images/inosuke.png";
@@ -25,44 +26,72 @@ const page = () => {
   ];
 
   const [bgShade, setBgShade] = useState(255);
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
+    // Trigger animation after component mounts
+    setHasLoaded(true);
+
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-
-      // Start darkening immediately but very gradually
-      // The effect continues for much longer (3-4 screen heights)
       const maxScroll = windowHeight * 3;
-
-      // Calculate progress (0 to 1)
       const progress = Math.min(scrollY / maxScroll, 1);
-
-      // Ease out cubic for smoother deceleration
       const easeProgress = 1 - Math.pow(1 - progress, 3);
-
-      // 255 (white) → 240 (very light gray) - subtle transition
       const shade = Math.floor(255 - easeProgress * 85);
-
       setBgShade(shade);
     };
 
-    handleScroll(); // Initialize on mount
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Function to handle page navigation with exit animation
+  const handleNavigate = (url) => {
+    setIsExiting(true);
+    setTimeout(() => {
+      router.push(url);
+    }, 1000); // Match with animation duration
+  };
+
+  // Intercept all link clicks for exit animation
+  useEffect(() => {
+    const handleClick = (e) => {
+      const link = e.target.closest("a");
+      if (link && link.href && !link.target) {
+        const url = new URL(link.href);
+        // Only animate internal navigation
+        if (url.origin === window.location.origin) {
+          e.preventDefault();
+          handleNavigate(url.pathname);
+        }
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, []);
+
   return (
     <>
+      {/* Navbar */}
+      <Navbar />
       <div
-        className="min-h-[150vh] relative transition-colors duration-300 ease-out"
+        className={`min-h-[150vh] relative transition-all duration-1000 ease-out
+          ${
+            isExiting
+              ? "translate-y-full opacity-0"
+              : hasLoaded
+              ? "translate-y-0 opacity-100"
+              : "-translate-y-full opacity-0"
+          }`}
         style={{
           backgroundColor: `rgb(${bgShade}, ${bgShade}, ${bgShade})`,
         }}
       >
-        {/* Navbar */}
-        <Navbar />
-
         {/* Collections Bar - Desktop Only */}
         <div className="hidden md:flex absolute top-2 right-1 px-5 pt-3 rounded-sm">
           <div className="bg-white border border-gray-200 w-[250px] sticky top-5 z-20 rounded-sm">
@@ -85,6 +114,7 @@ const page = () => {
             </div>
           </div>
         </div>
+
         {/* Main Content Container */}
         <div className="relative">
           {/* LEFT INFO PANEL - Desktop Only */}
@@ -102,7 +132,8 @@ const page = () => {
               Products <span className="font-bold text-black">12</span>
             </p>
           </div>
-          <div className="mt-50">
+
+          <div className="mt-50 overflow-hidden bg-fixed">
             {/* PRODUCTS GRID */}
             <div className="border-t border-l border-neutral-300">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
@@ -117,6 +148,7 @@ const page = () => {
                     style={{
                       backgroundColor: `rgb(${bgShade}, ${bgShade}, ${bgShade})`,
                     }}
+                    onClick={() => handleNavigate(`/product/${items.id}`)}
                   >
                     {/* IMAGE WRAPPER */}
                     <div className="flex items-center justify-center h-[220px]">
@@ -141,6 +173,8 @@ const page = () => {
           </div>
         </div>
       </div>
+
+      {/* Footer - No animation */}
       <Footer />
     </>
   );
